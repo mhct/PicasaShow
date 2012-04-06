@@ -1,37 +1,15 @@
-//https://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID
+$(document).ready(function() {
+         
+    $('#testDiv').html("MARIO");
 
-function showParticipants() {
-  var participants = gapi.hangout.getParticipants();
+    $.get("https://picasaweb.google.com/data/feed/api/user/mario.hct/albumid/5643547543866176097", buildPhotosCollection(data));
 
-  var retVal = '<p>Participants: </p><ul>';
+});
 
-  for (var index in participants) {
-    var participant = participants[index];
+function buildPhotosCollection(data) {
+    
 
-    if (!participant.person) {
-      retVal += '<li>A participant not running this app</li>';
+    for(photoURL in photosCollection) {
     }
-    retVal += '<li>' + participant.person.displayName + '</li>';
-  }
-
-  retVal += '</ul>';
-
-  var div = document.getElementById('participantsDiv');
-
-  div.innerHTML = retVal;
-}
-
-function init() {
-  // When API is ready...                                                         
-  gapi.hangout.onApiReady.add(
-      function(eventObj) {
-        if (eventObj.isApiReady) {
-          document.getElementById('showParticipants')
-            .style.visibility = 'visible';
-        }
-      });
-}
-
-// Wait for gadget to load.                                                       
-gadgets.util.registerOnLoadHandler(init);
+}        
 
