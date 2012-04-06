@@ -1,0 +1,43 @@
+<html>
+	<head>
+	<style type="text/css">
+<!--
+.button {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+  background: -moz-linear-gradient(top, #fff, #ddd);  
+  border: 1px solid #bbb;
+}
+
+.button:active {
+	background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333)); 
+	background: -moz-linear-gradient(bottom, #ddd, #aaa); }
+
+-->
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/picasashow.js"></script>
+
+</head>
+<body>
+https://picasaweb.google.com/data/feed/api/user/userID/albumid/albumID
+<script src="https://hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.0" ></script>
+
+<h3>Simple Hangout App</h3>
+
+<p>
+<input class="button" type="button" value="Show participants!" id="showParticipants" 
+    style="visibility:hidden;"
+    onClick="showParticipants()"/>
+</p>
+
+<div id="participantsDiv"></div>
+
+<hr>
+
+<p><a href="http://developers.google.com/+/hangouts/getting-started">Read the docs</a> to learn more about developing hangouts!</a></p>
+<img src="http://www.carnavaldebinche.be/images/logo.png"/>
+
+</body>
+
