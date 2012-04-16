@@ -41,4 +41,11 @@ https://lh6.googleusercontent.com/-wX6RiM1Qys0/TlHo4_fdnxI/AAAAAAAACEE/vAigVelHm
                                                                                     ^
                                                                                     |
 
+GID: 590319610512
+hangout url: https://plus.google.com/hangouts/_?gid=590319610512
+
+REMARKS
+- src/picasashow.coffee should be compiled to BARE js $coffee -c -b src/picasashow.coffee
+
+
 

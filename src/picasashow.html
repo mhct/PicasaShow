@@ -7,6 +7,17 @@
 </head>
 <body>
 <script src="https://hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.0" ></script>
+        <p>
+        <button id="authorize-button" style="visibility: hidden">Authorize</button>
+        <button id="token-button" style="visibility: hidden">Show token</button>
+        </p>
+
+    <div id="token-field" style="visibility: hidden">NONE</div>
+
+    <script src="http://people.cs.kuleuven.be/~mariohenrique.cruztorres/js/authCheck.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=onClientReady"></script>
+    <div id="content"></div>
+    <span id="instructions"><p>Retrieves your profile name using the Google Plus API.</p>
 
 <div id="photoContainer">Load Photo</div>
 <hr>
