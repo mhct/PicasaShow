@@ -27,17 +27,20 @@ var scopes = ['https://www.googleapis.com/auth/plus.me',
 /** Run authorization call in either with or without popup
  * @param {boolean} isImmediate Use immedate mode for authorization.
  */
-function checkAuth(isImmediate) {
+function checkAuth(isImmediate, fn) {
   console.log('checking auth');
 
   // Pass in a null client id; the gadget container will replace this
   // with a generated one.
   // HOWEVER!  You must go through the process of creating a client id
   // associated with this hangout app in the Google API console.
+  if(fn == null || fn == undefined) {
+    fn = handleAuthResult;
+  }
   gapi.auth.authorize({client_id: null,
           scope: scopes,
           immediate: isImmediate},
-    handleAuthResult);
+          fn);
 }
 
 /** Callback from auth function

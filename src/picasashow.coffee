@@ -1,21 +1,10 @@
-#class Photo extends Backbone.Model
-#    defaults:
-#        "description": ""
-#        "date": "undefined"
-#    initialize: ->
-#        @date = new Date(@get('date'))
- 
-#class PhotoView extends Backbone.View
-#        tagName: 'photoContainer'
-        
-#        initialize: (@model) ->
-
-#        render: ->
-#                $(@el).html("<img src='" + @model.get('phtoUrl')+ "'/>")
-#                return @
-
+#
+# 18/04/2012
+# @mariohct
+#
 photos = []
 photoIndex = 0
+googlePlusApiKey = 'AIzaSyC_Md4g5Gv5DA9FxtupQXsjOdOimg8HJPo'
 
 onClientReady = ->
         console.log "jquery ready"
@@ -27,13 +16,10 @@ onClientReady = ->
 # The first to load the APP will be the PRESENTER of the slideshow
 #
 loadApp = ->
-        gapi.client.setApiKey(apiKey)
-        #AIzaSyC_Md4g5Gv5DA9FxtupQXsjOdOimg8HJPo
-        window.setTimeout((-> checkAuth(true)), 1)
+        gapi.client.setApiKey(googlePlusApiKey)
+        window.setTimeout((-> checkAuth(true, (data) -> )), 1)
 
-        console.log "PicasaShow Ready"
         keyMaster = gapi.hangout.data.getValue('master_already_present')
-        console.log "keyMaster: $#{keyMaster}$"
 
         if gapi.hangout.data.getValue('master_already_present') == 'true'
                 clientApp()
@@ -49,27 +35,36 @@ masterApp = ->
         gapi.hangout.data.setValue('master_already_present', 'true')
 
         $('#testDiv').css 'background-color', 'green'
-        albumUrl = 'https://picasaweb.google.com/data/feed/api/user/mario.hct/albumid/5643547543866176097'
-        paramsUrl = {alt:'json'}
+        $('#controlsContainer').html("PicasaAlbumUrl: <input type='text' id='albumUrl'/>&nbsp<input id='albumOk' type='button' value='OK'/>")
+        $('#albumOk').click(-> loadAlbum())
 
-        $.getJSON(
-                albumUrl,
-                paramsUrl,
-                (data) ->
-                        buildAlbum entry for entry in data.feed.entry
-                        showNextPhoto()
-        )
+
+loadAlbum = () ->
+    #albumUrl = 'https://picasaweb.google.com/data/feed/api/user/mario.hct/albumid/5643547543866176097'
+    #albumUrl = 'https://picasaweb.google.com/data/feed/api/user/danirigolin/albumid/5731743717515495073'
+    #albumUrl = 'https://picasaweb.google.com/data/feed/api/user/mario.hct/albumid/5732154843755981809'
+    #other https://picasaweb.google.com/data/feed/api/user/108871109463531482000/albumid/5732154843755981809
+    albumUrl = $('#albumUrl').val()
+    paramsUrl = {alt:'json'}
+
+    $.getJSON(
+            albumUrl,
+            paramsUrl,
+            (data) ->
+                    buildAlbum entry for entry in data.feed.entry
+                    showNextPhoto()
+    )
 
 clientApp = ->
         gapi.hangout.data.onStateChanged.add( ->
                 currentPhotoUrl = gapi.hangout.data.getValue('currentPhotoUrl')
-                $('#photoContainer').html("<img id='photoView' src='#{currentPhotoUrl}' />")
+                $('#photoContainer').html("<img id='photoView' src='#{currentPhotoUrl}'/>")
         )
 
 
 buildAlbum = (entry) ->
-        console.log "CONTENT: #{entry.content.src}"
-        photos[photos.length] = entry.content.src
+        str = entry.content.src
+        photos[photos.length] = str.substr(0,str.lastIndexOf("/")) + "/s0" + str.substr(str.lastIndexOf("/"), str.length)
         
    
 showNextPhoto = () ->
@@ -86,3 +81,4 @@ showNextPhoto = () ->
         $('#photoView').click(-> showNextPhoto())
         photoIndex++
 
+window.onClientReady = onClientReady
