@@ -1,22 +1,29 @@
-#
-# PicasaShow
-# 06/04/2012
-# @mariohct
-#
+### PicasaShow
 
-APIs Documentation
+06/04/2012
+@mariohct
+
+Realtime photo show for Google+ hangouts. People participating on a G+ hangout can see the same
+photos at the same time, which are selected by a presenter.
+
+As I live far from my family. I created this very tiny application to allow me to show  photos to my family and see their
+to my photos, while I was showing them.
+
+
+
+##### APIs Documentation
 
 - Picasaweb http://code.google.com/apis/picasaweb/docs/2.0/developers_guide_protocol.html#ListAlbumPhotos
 - G+ hangouts https://developers.google.com/+/release-notes/hangouts#v1.0
 
-Tools
+##### Tools
 - http://jsonviewer.stack.hu/
 
-JS libraries
+##### JS libraries
 - http://highslide.com/
 - http://code.google.com/p/pwi/
  
-PICASAWEB API
+##### PICASAWEB API
 
 list albums: 
 https://picasaweb.google.com/data/feed/api/user/userID
@@ -43,9 +50,6 @@ https://lh6.googleusercontent.com/-wX6RiM1Qys0/TlHo4_fdnxI/AAAAAAAACEE/vAigVelHm
 
 GID: 590319610512
 hangout url: https://plus.google.com/hangouts/_?gid=590319610512
-
-REMARKS
-- src/picasashow.coffee should be compiled to BARE js $coffee -c -b src/picasashow.coffee
 
 
 
