@@ -4,12 +4,30 @@
 @mariohct
 
 Realtime photo show for Google+ hangouts. People participating on a G+ hangout can see the same
-photos at the same time, which are selected by a presenter.
+photos at the same time, which are selected by a presenter. When the presenter selects a photo, 
+everyone else participating on the G+ Hangout can also see that new photo.
 
-As I live far from my family. I created this very tiny application to allow me to show  photos to my family and see their
-to my photos, while I was showing them.
+As I live far from my family. I created this very tiny application to allow me to show photos to 
+my family while seeing their reactions.
 
 
+##### Installation
+
+Currently you have to change a few files in order to deploy the application at your own servers. 
+You also have to add your google ID, and the URL to the PicasaAlbum you want to show. This is done changing the
+configuration code at the 
+
+- Change the src/picasashow.html to reflect your the address of your own server
+
+```html
+<script type="text/javascript" src="http://people.cs.kuleuven.be/~mariohenrique.cruztorres/js/picasashow.js"></script>
+<script src="http://people.cs.kuleuven.be/~mariohenrique.cruztorres/js/authCheck.js"></script>
+```
+
+- Change the src/picasashow.coffee file, adding your GooglePlusAPIKey
+```coffeescript
+googlePlusApiKey = 'AIzaSyC_Md4g5Gv5DA9FxtupQXsjOdOimg8HJPo'
+```
 
 ##### APIs Documentation
 
